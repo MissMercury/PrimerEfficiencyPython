@@ -46,14 +46,12 @@ for key in unique:
     LinearRegression.loc[key] = result 
 
 
-#Efficienty
+#Efficiency
 
 LinearRegression['Efficiency'] = LinearRegression.slope / (10/3)
 LinearRegression['r2'] = LinearRegression.r_value ** 2
 LinearRegression['Gene'] = qpcr.Gene.unique()
 LinearRegression['PassFail'] = '' 
-LinearRegression.Efficiency = pd.to_numeric(LinearRegression.Efficiency)
-LinearRegression.r2 = pd.to_numeric(LinearRegression.r2)
     
 for i in LinearRegression.Gene.unique():
     PassFail = ((LinearRegression.Efficiency[i] >= 0.9) & (LinearRegression.Efficiency[[i]] <= 1.1) & (LinearRegression.r2[[i]] >= 0.975)).bool
